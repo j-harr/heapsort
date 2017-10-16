@@ -12,6 +12,7 @@ public class Main {
         //DECLARATION OF VARIABLES
         String username;
         long timestart;
+        long timenow;
         long timestop;
 
         //GREETING AND TIME START
@@ -19,6 +20,42 @@ public class Main {
         System.out.println(">>Current tester: "+username);
         timestart = System.currentTimeMillis();
         System.out.println(">>Time Start: "+timestart);
+        divline();
+        timenow = System.currentTimeMillis();
+        test(10000);
+        elapsedtime(timenow);
+        divline();
+        timenow = System.currentTimeMillis();
+        test(20000);
+        elapsedtime(timenow);
+        divline();
+        timenow = System.currentTimeMillis();
+        test(40000);
+        elapsedtime(timenow);
+        divline();
+        timenow = System.currentTimeMillis();
+        test(80000);
+        elapsedtime(timenow);
+        divline();
+        timenow = System.currentTimeMillis();
+        test(160000);
+        elapsedtime(timenow);
+        divline();
+        timenow = System.currentTimeMillis();
+        test(320000);
+        elapsedtime(timenow);
+        divline();
+        timenow = System.currentTimeMillis();
+        test(640000);
+        elapsedtime(timenow);
+        divline();
+        timenow = System.currentTimeMillis();
+        test(1280000);
+        elapsedtime(timenow);
+        divline();
+        timenow = System.currentTimeMillis();
+        test(2560000);
+        elapsedtime(timenow);
         divline();
         //TIMESTOP AND FAREWELL
         timestop = System.currentTimeMillis();
@@ -55,5 +92,36 @@ public class Main {
         timenow = System.currentTimeMillis();
         timeelaps = timenow - timestart;
         System.out.println(">>Time elapsed: "+timeelaps+"ms");
+    }
+
+    static void test(int size){
+        Heap<Integer> tmp = new Heap<Integer>();
+        Integer [] array01;
+        array01 = new Integer[size];
+
+        for(int i = 0; i < size; i++){
+            array01[(size-1) - i] = i;
+        }
+
+        System.out.println("Array size: "+size);
+        System.out.print("Initial: ");
+        System.out.print("{");
+
+        for(int i = 0; i < size -1 && i < 20; i++){
+            System.out.print(array01[i]+",");
+        }
+        System.out.println(array01[size-1]+"}");
+
+        tmp.heapSort(array01);
+
+        System.out.print("Sorted: ");
+        System.out.print("{");
+
+        for(int i = 0; i < size -1 && i < 20; i++){
+            System.out.print(array01[i]+",");
+        }
+        System.out.println(array01[size-1]+"}");
+        //System.out.println(Arrays.toString(array01));
+
     }
 }
