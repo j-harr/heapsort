@@ -1,8 +1,8 @@
 /**
  * class Main
- * contains functions main(), greeting(), initialize(), farewell(), divline(),
+ * contains functions main(), greeting(), farewell(), divline(),
  * elapsedtime()
- * test01(), test02(), test03(), and test04()
+ * test()
  * serves as driver for testing heap and HeapSort functionality.
  */
 import java.util.*;
