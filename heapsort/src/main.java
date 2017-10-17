@@ -8,63 +8,44 @@
 import java.util.*;
 
 public class Main {
-    public static void main(String [] args){
+    /**
+     * main()
+     * This function serves as the driver for testing the heapsort
+     * functionality. The start time is recorded and the various tests are
+     * implemented on the data. There are 9 different tests
+     */
+    public static void main(String [] args)
+    {
         //DECLARATION OF VARIABLES
-        String username;
         long timestart;
-        long timenow;
         long timestop;
 
         //GREETING AND TIME START
-        username = greeting();
-        System.out.println(">>Current tester: "+username);
+        greeting();
         timestart = System.currentTimeMillis();
         System.out.println(">>Time Start: "+timestart);
         divline();
-        timenow = System.currentTimeMillis();
+
+        //Time trials of various data sizes
         test(10000);
-        elapsedtime(timenow);
-        divline();
-        timenow = System.currentTimeMillis();
         test(20000);
-        elapsedtime(timenow);
-        divline();
-        timenow = System.currentTimeMillis();
         test(40000);
-        elapsedtime(timenow);
-        divline();
-        timenow = System.currentTimeMillis();
         test(80000);
-        elapsedtime(timenow);
-        divline();
-        timenow = System.currentTimeMillis();
         test(160000);
-        elapsedtime(timenow);
-        divline();
-        timenow = System.currentTimeMillis();
         test(320000);
-        elapsedtime(timenow);
-        divline();
-        timenow = System.currentTimeMillis();
         test(640000);
-        elapsedtime(timenow);
-        divline();
-        timenow = System.currentTimeMillis();
         test(1280000);
-        elapsedtime(timenow);
-        divline();
-        timenow = System.currentTimeMillis();
         test(2560000);
-        elapsedtime(timenow);
-        divline();
+
         //TIMESTOP AND FAREWELL
         timestop = System.currentTimeMillis();
         System.out.println(">>Time Stop: "+timestop);
-        farewell(username, timestart, timestop);
+        farewell(timestart);
     }
 
 
-    static String greeting(){
+    private static void greeting()
+    {
         Scanner scgreeting = new Scanner(System.in);
         String username;
         System.out.println(">>Welcome to the Heap Sort test driver!");
@@ -73,20 +54,22 @@ public class Main {
         System.out.print(">>Please enter your name: ");
         username = scgreeting.nextLine();
         divline();
-        return username;
+        System.out.println(">>Current tester: "+username);
     }
 
-    static void farewell(String username, long timestart, long time){
+    private static void farewell(long timestart)
+    {
         divline();
-        System.out.println(">>User: "+username);
         elapsedtime(timestart);
     }
 
-    static void divline(){
+    private static void divline()
+    {
         System.out.println("################################################");
     }
 
-    static void elapsedtime(long timestart){
+    private static void elapsedtime(long timestart)
+    {
         long timenow;
         long timeelaps;
         timenow = System.currentTimeMillis();
@@ -94,34 +77,44 @@ public class Main {
         System.out.println(">>Time elapsed: "+timeelaps+"ms");
     }
 
-    static void test(int size){
+    private static void test(int size)
+    {
+        //Initialize variables
         Heap<Integer> tmp = new Heap<Integer>();
         Integer [] array01;
         array01 = new Integer[size];
+        long timenow;
 
+        //Start Timer and create array of data
+        timenow = System.currentTimeMillis();
         for(int i = 0; i < size; i++){
             array01[(size-1) - i] = i;
         }
 
+        //Print initial array
         System.out.println("Array size: "+size);
         System.out.print("Initial: ");
         System.out.print("{");
-
-        for(int i = 0; i < size -1 && i < 20; i++){
+        for(int i = 0; i < size -1 && i < 19; i++){
             System.out.print(array01[i]+",");
         }
-        System.out.println(array01[size-1]+"}");
+        if(size > 20){ System.out.println(array01[19]+"}");}
+        else System.out.println(array01[size - 1]+"}");
 
+        //Use HeapSort to sort the array
         tmp.heapSort(array01);
 
+        //Print sorted array
         System.out.print("Sorted: ");
         System.out.print("{");
-
-        for(int i = 0; i < size -1 && i < 20; i++){
+        for(int i = 0; i < size -1 && i < 19; i++){
             System.out.print(array01[i]+",");
         }
-        System.out.println(array01[size-1]+"}");
-        //System.out.println(Arrays.toString(array01));
+        if(size > 20){ System.out.println(array01[19]+"}");}
+        else System.out.println(array01[size - 1]+"}");
 
+        //Print elapsed time and dividing line
+        elapsedtime(timenow);
+        divline();
     }
 }
